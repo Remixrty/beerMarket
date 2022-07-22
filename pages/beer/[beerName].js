@@ -24,7 +24,9 @@ export default function BeerName() {
                 <div className='container'>
                     <div className='row'>
                         <div className={stylesBeer.content}>
-                            <div className={styles.textBold95}>{query?.name}</div>
+                            <div className={styles.textBold95}>
+                                {query?.name}
+                            </div>
                             <div className={stylesBeer.mainContent}>
                                 <div className={stylesBeer.additional}>
                                     <div className={styles.textBold25}>
@@ -50,7 +52,28 @@ export default function BeerName() {
                                     </div>
                                 </div>
                             </div>
-
+                            <div className={stylesBeer.descriptional}>
+                                <div className={styles.textBold95}>
+                                    Description
+                                </div>
+                                <div className={styles.textBold31}>
+                                    {query.description}
+                                </div>
+                                <div className={styles.textBold95}>
+                                    Food pairing
+                                </div>
+                                <div className={styles.textBold31}>
+                                    {query.food_pairing.map(food =>
+                                        <div>{food}</div>
+                                    )}
+                                </div>
+                                <div className={styles.textBold95}>
+                                    Brewers tips
+                                </div>
+                                <div className={styles.textBold31}>
+                                    {query.brewers_tips}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
