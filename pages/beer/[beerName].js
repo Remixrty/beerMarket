@@ -63,9 +63,9 @@ export default function BeerName() {
                                     Food pairing
                                 </div>
                                 <div className={styles.textBold31}>
-                                    {query.food_pairing.map(food =>
-                                        <div>{food}</div>
-                                        
+                                    {query.food_pairing?.map(food =>
+                                        <div key={food}>{food}</div>
+
                                     )}
                                 </div>
                                 <div className={styles.textBold95}>
