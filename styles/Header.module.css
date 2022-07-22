@@ -1,0 +1,40 @@
+@import url('fonts.css');
+
+.header {
+    width: 100vw;
+    height: 224px;
+    background: #EFEFEF;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 56px 88px;
+}
+
+.logo {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+}
+
+.logoText {
+    text-align: center;
+    margin-left: 24px;
+}
+
+.searchItem {
+    width: 368px;
+    height: 48px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #000000;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.searchItem:focus {
+    transition: all 0.3s ease;
+    outline: none;
+}

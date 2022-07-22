@@ -1,0 +1,40 @@
+@import url('fonts.css');
+
+.textBold48 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48.83px;
+  line-height: 60px;
+
+  color: #000000;
+}
+
+.textBold25 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 30px;
+
+  color: #000000;
+}
+
+.textLight20 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 200;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #000000;
+}
+
+.textLight16 {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.textLight25 {
+  font-weight: 200;
+}
