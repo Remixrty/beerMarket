@@ -38,3 +38,13 @@
 .textLight25 {
   font-weight: 200;
 }
+
+.textBold95 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 95.37px;
+  line-height: 116px;
+
+  color: #000000;
+}

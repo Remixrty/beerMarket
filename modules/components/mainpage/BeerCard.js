@@ -19,7 +19,10 @@ export default function BeerCard(props) {
                 />
                 <div className={styles.textBold25}>{data?.beer?.name}</div>
                 <div className={styles.textLight20}>{data?.beer?.tagline}</div>
-                <Link href={'/beer/' + data?.beer?.name?.replace(/\s+/g, '')}>
+                <Link href={{
+                    pathname: '/beer/' + data?.beer?.name?.replace(/\s+/g, ''),
+                    query: data?.beer
+                    }}>
                     <div className={`${styles.textLight20} ${styles.textLight16} ${stylesMain.button}`} >Tap to see more</div>
                 </Link>
             </div>
