@@ -1,9 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../../styles/Home.module.css'
 import stylesHeader from '../../../styles/Header.module.css'
 import Link from 'next/link'
 
 export default function Header() {
+    const [beers, setBeers] = useState([])
+    const [searchBox, setSeatchBox] = useState()
+    const [pages, setPages] = useState(1)
+    const [finds, setFinds] = useState([])
+
+    async function searchBeer() {
+        const rray = await fetch(`https://api.punkapi.com/v2/beers?page=${pages}&per_page=30`)
+        const data = JSON.stringify(await rray.json())
+        setBeers(JSON.parse(data))
+    }
+
+    async function searchSome() {
+        if (searchBox) {
+            beers?.forEach(el => {
+                // console.log(el);
+                if (el?.name?.toLowerCase().includes(searchBox?.toLowerCase())) {
+
+                    if (!finds?.includes(el)) {
+                        // console.log(finds);
+                        setFinds(finds => [...finds, el])
+                    }
+                }
+            });
+            setPages(pages + 1)
+        }
+        console.log(pages);
+        console.log(finds);
+    }
+
+    useEffect(() => {
+        setFinds(finds => [])
+        setPages(1)
+    }, [searchBox])
+
+    useEffect(() => {
+        console.log(searchBox);
+        if (pages < 11 && searchBox) { searchBeer(); searchSome() }
+    }, [pages, searchBox])
+
+
 
     return (
         <>
@@ -23,7 +63,7 @@ export default function Header() {
                             <div className={styles.textBold25} style={{ marginTop: '-5px' }}>drink & chill</div>
                         </div>
                     </div></Link>
-                <input type='text' className={`${stylesHeader.searchItem} ${styles.textBold25} ${styles.textLight25}`} placeholder='search your favorite' />
+                <input type='text' className={`${stylesHeader.searchItem} ${styles.textBold25} ${styles.textLight25}`} placeholder='search your favorite' onChange={e => setSeatchBox(e.target.value)} />
             </div>
         </>
     )
