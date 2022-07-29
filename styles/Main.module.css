@@ -48,4 +48,5 @@
     width: 600px;
     justify-content: space-between;
     cursor: pointer;
+    padding-bottom: 32px;
 }
