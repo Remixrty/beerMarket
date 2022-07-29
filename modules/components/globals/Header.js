@@ -5,43 +5,42 @@ import Link from 'next/link'
 
 export default function Header() {
     const [beers, setBeers] = useState([])
-    const [searchBox, setSeatchBox] = useState()
+    const [searchBox, setSearchBox] = useState()
     const [pages, setPages] = useState(1)
     const [finds, setFinds] = useState([])
+    const [tempSearch, setTempSearch] = useState('')
 
     async function searchBeer() {
         const rray = await fetch(`https://api.punkapi.com/v2/beers?page=${pages}&per_page=30`)
         const data = JSON.stringify(await rray.json())
         setBeers(JSON.parse(data))
+        searchSome()
     }
 
-    async function searchSome() {
+    function searchSome() {
         if (searchBox) {
             beers?.forEach(el => {
-                // console.log(el);
                 if (el?.name?.toLowerCase().includes(searchBox?.toLowerCase())) {
 
                     if (!finds?.includes(el)) {
-                        // console.log(finds);
                         setFinds(finds => [...finds, el])
                     }
                 }
             });
-            setPages(pages + 1)
+            if (finds.length < 6) setPages(pages + 1)
         }
-        console.log(pages);
-        console.log(finds);
+
     }
 
     useEffect(() => {
         setFinds(finds => [])
         setPages(1)
+        setTempSearch(searchBox)
     }, [searchBox])
 
     useEffect(() => {
-        console.log(searchBox);
-        if (pages < 11 && searchBox) { searchBeer(); searchSome() }
-    }, [pages, searchBox])
+        if (pages < 12 && searchBox) { searchBeer() }
+    }, [pages, tempSearch])
 
 
 
@@ -63,7 +62,21 @@ export default function Header() {
                             <div className={styles.textBold25} style={{ marginTop: '-5px' }}>drink & chill</div>
                         </div>
                     </div></Link>
-                <input type='text' className={`${stylesHeader.searchItem} ${styles.textBold25} ${styles.textLight25}`} placeholder='search your favorite' onChange={e => setSeatchBox(e.target.value)} />
+                <div className={stylesHeader.searchBox}>
+                    <input type='text' className={`${stylesHeader.searchItem} ${styles.textBold25} ${styles.textLight25}`} placeholder='search your favorite' onChange={e => setSearchBox(e.target.value)} />
+
+                    <div className={stylesHeader.resultList} style={finds?.length?{visibility:'visible'}:{visibility:'hidden'}}>
+                        {finds?.map(find =>
+                            <Link href={{
+                                pathname: '/beer/' + find?.name?.replace(/\s+/g, ''),
+                                query: find
+                            }}>
+                                <div className={`${styles.textLight25} ${styles.textBold25} ${stylesHeader.findItem}`}>{find?.name}</div>
+                            </Link>
+                        )}
+
+                    </div>
+                </div>
             </div>
         </>
     )

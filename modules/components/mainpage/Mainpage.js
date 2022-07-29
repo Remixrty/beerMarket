@@ -12,7 +12,7 @@ export default function Mainpage() {
     const getBeer = async () => {
         const rray = await fetch(`https://api.punkapi.com/v2/beers?page=${pages}&per_page=6`)
         const data = await rray.json()
-        console.log(data);
+        // console.log(data);
         setBeers(data)
     }
 
@@ -31,8 +31,15 @@ export default function Mainpage() {
                         )}
                     </div>
                 </div>
-                <div onClick={() => setPages(pages > 1 ? pages - 1 : 1)}>decrease</div>
-                <div onClick={() => setPages(pages + 1)}>increase</div>
+                <div className={stylesMain.paginationMenu}>
+                    <div className={styles.textLight20} onClick={() => setPages(pages > 1 ? pages - 1 : 1)}>Prev</div>
+                    {pages > 1 ? <div className={styles.textBold25} onClick={() => setPages(pages > 1 ? pages - 1 : 1)}>{pages - 1}</div> : ''}
+                    <div className={styles.textBold25}>{pages}</div>
+                    <div className={styles.textBold25} onClick={() => setPages(pages + 1)}>{pages + 1}</div>
+                    <div className={styles.textLight20} onClick={() => setPages(pages < 41 ? pages + 1 : 41)}>Next</div>
+                </div>
+
+
             </div>
 
         </>

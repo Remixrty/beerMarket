@@ -41,3 +41,11 @@
     background: #c7c7c7;
     cursor: pointer;
 }
+
+.paginationMenu {
+    display: flex;
+    margin: auto;
+    width: 600px;
+    justify-content: space-between;
+    cursor: pointer;
+}
